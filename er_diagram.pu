@@ -1,0 +1,74 @@
+@startuml internet_tv
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "channels" as ch {
+  *id
+  --
+  *name
+}
+
+entity "categories" as cat {
+  *id
+  --
+  *name
+}
+
+entity "program_category" as pc {
+  *program_id [FK]
+  *category_id [FK]
+  --
+}
+
+entity "programs" as pg {
+  *id
+  --
+  *title
+  *detail
+  *has_season
+}
+
+entity "seasons" as s {
+  *id
+  --
+  *program_id [FK]
+  *season_num
+}
+
+entity "episodes" as ep {
+  *id
+  --
+  *season_id [FK]
+  *episode_num
+  *title
+  *detail
+  *video_time
+  *release_date
+}
+
+entity "channel_time_slot" as ct {
+  *id
+  --
+  *channel_id [FK]
+  *episode_id [FK]
+  *starting_time
+  *end_time
+}
+
+entity "channel_time_slot_views" as ctv {
+  *channel_time_slot_id [FK]
+  --
+  *view_num
+}
+
+pg ||..|{ pc
+cat ||..|{ pc
+pg ||..|{ s
+s ||..|{ ep
+ch ||..|{ ct
+ep ||..|{ ct
+ct ||..|| ctv
+@enduml
