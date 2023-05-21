@@ -21,8 +21,7 @@ docker compose up -d
 docker compose exec db mysql -u root -p
 ```
 
-パスワードの入力が求められます。今回パスワードは"pass"としています。
-MySQLに接続後、次のコマンドを実行してDBを指定します。
+パスワードを入力してMySQLに接続後、次のコマンドを実行してDBを指定します。
 
 ```
 use internet_tv;
